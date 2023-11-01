@@ -20,7 +20,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight); //create a canvas that covers the entire browser
   colorMode(HSB); // set color mode to Hue Saturation Brightness
   
-  console.log(1)
+  
   // mic = new p5.AudioIn();
   // mic.start();
   fft = new p5.FFT();
@@ -35,10 +35,14 @@ function setup() {
   makeCircles(); // call function to create circle objects
 }
 function mousePressed(){
-  if(!sound.isPlaying()){
-    sound.loop()
+  if(sound.isPlaying()){
+    sound.stop();
+  } else {
+    sound.loop();
   }
-}
+
+  }
+
 
 // function to create and store circle objects
 function makeCircles() {
@@ -88,8 +92,8 @@ function draw() {
     circle.show();
   }
   if(!sound.isPlaying()){
-    fill(0)
-    text("tap to Tap to play",width*0.1,height*0.05)
+    fill(0);
+    text("Tap to play and pause", width * 0.1, height * 0.05);
   }
 }
 
