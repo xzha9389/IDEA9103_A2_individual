@@ -158,7 +158,3 @@ class CircleCenter {
         ellipse(this.pos.x, this.pos.y, this.radius * 2); // draw the circle center
     }
 }
-
-
-
-
