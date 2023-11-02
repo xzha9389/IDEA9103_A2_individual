@@ -13,7 +13,7 @@ let splitCircle = 8;
 let curveBase;
 
 function preload(){
-  sound  = loadSound('audio/sound.mp3')
+  sound  = loadSound('audio/Walking on a dream.mp3')
 }
 
 function setup() {
@@ -115,7 +115,7 @@ class BigCircle {
     let innerRadius = maxRadius * 0.9; // calculate inner radius for lines
     stroke(34, 100, 100); // set color for lines
     
-    
+
     
     
 
