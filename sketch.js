@@ -1,3 +1,7 @@
+//preload music
+function preload() {
+    sound = loadSound('audio/Walking on a dream.mp3')
+}
 // array to store all circle objects
 let circles = [];
 // const maxRadius = 60; // maximum radius for smaller circles
@@ -7,18 +11,12 @@ let circles = [];
 const maxRadius = 100; // maximum radius for smaller circles
 const bigCircleRadius = 150; // radius of big circle
 
-//set variables of sound, fft and spectrum and different level of energy
+//set variables of sound, fft and spectrum
 let sound
 let fft;
 let spectrum;
-let lowEnergy;
-let midEnergy;
-let highEnergy;
 
-//preload music
-function preload() {
-    sound = loadSound('audio/Walking on a dream.mp3')
-}
+
 function setup() {
     fft = new p5.FFT();
     fft.setInput(sound);
@@ -66,6 +64,10 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight); // resize canvas to fit the window
     makeCircles(); // recreate circle objects to fit new window size
 }
+//set varibales for different level of energy
+let lowEnergy;
+let midEnergy;
+let highEnergy;
 
 function draw() {
     background(44, 61, 100); // set background color
@@ -186,7 +188,7 @@ class SmallCircle {
         rectMode(CENTER);
         //position translate to big cirlce
         translate(this.pos.x, this.pos.y);
-        //rotate the lines对彩线进行旋转
+        //rotate the lines
         rotate(radians(angle2));
 
         // loop to draw 5 dots around the small circle
@@ -220,11 +222,14 @@ class CircleCenter {
     }
 }
 
-function mousePressed(){
-    if(sound.isPlaying()){
-        sound.stop();
+//make a function to deal with mouse pressed 
+function mousePressed() {
+   
+    if (sound.isPlaying()) { //if the sound is play, then pause it
+      sound.pause(); 
     } else {
-        sound.loop();
+      if (sound.isLoaded()) { //if the sound is loading, then play it
+        sound.loop(); 
+      }
     }
-
-}
+  }
