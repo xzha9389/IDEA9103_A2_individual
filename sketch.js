@@ -64,10 +64,6 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight); // resize canvas to fit the window
     makeCircles(); // recreate circle objects to fit new window size
 }
-// set varibales for different level of energy
-let lowEnergy;
-let midEnergy;
-let highEnergy;
 
 function draw() {
     background(44, 61, 100); // set background color
