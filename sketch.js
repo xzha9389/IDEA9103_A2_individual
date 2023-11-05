@@ -139,7 +139,7 @@ class SmallCircle {
                     this.radius = this.radius2 + (mapSize * 10);
                 }
 
-                if (j == 12 && spectrum[j] > 0) { // if it's the 13th of the array
+                if (j == 12 && spectrum[j] > 0) { // if it's the 13th of the array. set the bubbles angle
                     // calculate the rotate angle increased value, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0~10
                     let addAngle = map(spectrum[j], 0, 255, 1, 10);
                     console.log(addAngle)
@@ -148,7 +148,7 @@ class SmallCircle {
                 }
 
 
-                if (j == 24 && spectrum[j] > 0) { if // if it's 25th of the array,
+                if (j == 24 && spectrum[j] > 0) { if // if it's 25th of the array. set the bubbles size
                     // calculates the radius of a rotating small circle, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0 to Small Circle Radius
                     let mapSize = map(spectrum[j], 0, 255, 0, this.radius * 0.2);
                     // assign the value
