@@ -4,8 +4,8 @@ let circles = [];
 // const bigCircleRadius = 150; // radius of big circle
 
 //change the size of circles, to avoid there are too many circles, make the animation effect laggy 
-const maxRadius = 150; // maximum radius for smaller circles
-const bigCircleRadius = 200; // radius of big circle
+const maxRadius = 100; // maximum radius for smaller circles
+const bigCircleRadius = 150; // radius of big circle
 
 //set variables of sound, fft and spectrum and different level of energy
 let sound
