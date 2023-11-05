@@ -1,4 +1,4 @@
-//preload music
+// preload music
 function preload() {
     sound = loadSound('audio/Walking on a dream.mp3')
 }
@@ -7,11 +7,11 @@ let circles = [];
 // const maxRadius = 60; // maximum radius for smaller circles
 // const bigCircleRadius = 150; // radius of big circle
 
-//change the size of circles, to avoid there are too many circles, make the animation effect laggy 
+// change the size of circles, to avoid there are too many circles, make the animation effect laggy 
 const maxRadius = 100; // maximum radius for smaller circles
 const bigCircleRadius = 150; // radius of big circle
 
-//set variables of sound, fft and spectrum
+// set variables of sound, fft and spectrum
 let sound
 let fft;
 let spectrum;
@@ -21,7 +21,7 @@ function setup() {
     fft = new p5.FFT();
     fft.setInput(sound);
     spectrum = fft.analyze();
-    createCanvas(windowWidth, windowHeight); //create a canvas that covers the entire browser
+    createCanvas(windowWidth, windowHeight); // create a canvas that covers the entire browser
     colorMode(HSB); // set color mode to Hue Saturation Brightness
     makeCircles(); // call function to create circle objects
 
@@ -64,7 +64,7 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight); // resize canvas to fit the window
     makeCircles(); // recreate circle objects to fit new window size
 }
-//set varibales for different level of energy
+// set varibales for different level of energy
 let lowEnergy;
 let midEnergy;
 let highEnergy;
@@ -72,11 +72,11 @@ let highEnergy;
 function draw() {
     background(44, 61, 100); // set background color
 
-    //analyze sound, get amplitude array
+    // analyze sound, get amplitude array
     spectrum = fft.analyze();
 
 
-    // // loop through all circle objects and call their show method
+    // loop through all circle objects and call their show method
     for (let circle of circles) {
         circle.show();
     }
@@ -112,7 +112,7 @@ class BigCircle {
         }
     }
 }
-//set variable of rotate angle
+// set variable of rotate angle
 let angle2 = 0;
 // class for the small circle
 class SmallCircle {
@@ -133,18 +133,18 @@ class SmallCircle {
 
     // method to display the small circle
     show() {
-        //if has sound
+        // if has sound
         if (spectrum.length != 0) {
-            for (let j = 0; j < spectrum.length; j += 4) {
-                if (j == 0) {
-                    //calculate the radius increase value, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0~10
+            for (let j = 0; j < spectrum.length; j += 4) { // go through the array
+                if (j == 0) { // if j is 0
+                    // calculate the radius increase value, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0~10
                     let mapSize = map(spectrum[j], 0, 255, 0, 10);
-                    //reassign the radius, to becomes a dynamic radius
+                    // reassign the radius, to becomes a dynamic radius
                     this.radius = this.radius2 + (mapSize * 10);
                 }
 
-                if (j == 12 && spectrum[j] > 0) {
-                    //calculate the rotate angle increased value, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0~10
+                if (j == 12 && spectrum[j] > 0) { // if it's the 13th of the array
+                    // calculate the rotate angle increased value, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0~10
                     let addAngle = map(spectrum[j], 0, 255, 1, 10);
                     console.log(addAngle)
                     //assign the value
@@ -152,10 +152,10 @@ class SmallCircle {
                 }
 
 
-                if (j == 24 && spectrum[j] > 0) {
-                    //calculates the radius of a rotating small circle, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0 to Small Circle Radius
+                if (j == 24 && spectrum[j] > 0) { if // if it's 25th of the array,
+                    // calculates the radius of a rotating small circle, the volume is mapped from 0~255 to 0~10 to get a value in the range of 0 to Small Circle Radius
                     let mapSize = map(spectrum[j], 0, 255, 0, this.radius * 0.2);
-                    //assign the value
+                    // assign the value
                     this.dot = mapSize;
                 }
 
@@ -182,13 +182,13 @@ class SmallCircle {
             }
         }
 
-        //store all displacement rotation styles
+        // store all displacement rotation styles
         push();
-        //set the shapemode to center
+        // set the shapemode to center
         rectMode(CENTER);
-        //position translate to big cirlce
+        // position translate to big cirlce
         translate(this.pos.x, this.pos.y);
-        //rotate the lines
+        // rotate the lines
         rotate(radians(angle2));
 
         // loop to draw 5 dots around the small circle
@@ -196,10 +196,10 @@ class SmallCircle {
             let angle = TWO_PI / 5 * i; // calculate angle for each dot
             let xOffset = cos(angle) * (this.radius * 2.5); // calculate x offset for dot position
             let yOffset = sin(angle) * (this.radius * 2.5); // calculate y offset for dot position
-            //give rotating circles a dynamic size
+            // give rotating circles a dynamic size
             ellipse(0 + xOffset, 0 + yOffset, this.dot); // draw the dot
         }
-        //set the shape mode to corner
+        // set the shape mode to corner
         rectMode(CORNER);
         pop();
     }
@@ -222,13 +222,13 @@ class CircleCenter {
     }
 }
 
-//make a function to deal with mouse pressed 
+// make a function to deal with mouse pressed 
 function mousePressed() {
    
-    if (sound.isPlaying()) { //if the sound is play, then pause it
+    if (sound.isPlaying()) { // if the sound is play, then pause it
       sound.pause(); 
     } else {
-      if (sound.isLoaded()) { //if the sound is loading, then play it
+      if (sound.isLoaded()) { // if the sound is loading, then play it
         sound.loop(); 
       }
     }
